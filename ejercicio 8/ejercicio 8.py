@@ -1,0 +1,7 @@
+newFile = open("newFile.txt","w")
+newFile.write(input("ingresar info para guardar: "))
+newFile.close()
+OpenedNewFile = open("newFile.txt","r")
+print(OpenedNewFile.read())
+OpenedNewFile.close()
+input()
