@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .authorName{
+            color:white;
+            background-color: orange;
+            height: max-content;
+            width: max-content;
+            padding: 3%;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        #authors{
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+        }
+        .author{
+            /* background-color: blue; */
+            height: 20vh;
+            display: flex;
+            align-items: center;
+            margin-bottom: 2vh;
+            box-shadow: 0px 4px 10px white;
+            border: white solid 1px;
+            border-radius: 10px;
+        }
+        .movies{
+            width: max-content;
+        }
+        .movie{
+            background-color: yellow;
+            border-radius: 10px;
+            margin: 0% 1%;
+            height: max-content;
+            padding: 1%;
+        }
+        form{
+            display: flex;
+            flex-direction: row;
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+    <form  action="/cine/" body method="post">
+        <label>nombre del author que desea buscar</label>
+        <input type="text" name="authorName" defaultValue=""><br><br>
+        <button type="submit">buscar</button>
+    </form>
+    
+    {% if authors.0 %}
+        <div id="authors">
+            {% for auth in authors%}
+            <div class="author">
+                {% if auth.0.name %}
+                    <span class="authorName">AUTOR: {{auth.0.name}}</span>
+                    
+                        {% for movie in auth.1%}
+                        {% if movie.title %}
+                        <div class="movie">
+                            <span>TITULO: {{movie.title}}</span><br></br>
+                            <span>{{movie.summary}}</span>
+                        </div>
+                        {% endif %}
+                        {% endfor %}    
+                    
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        
+    {% else %}
+        <span>no hay nadie</span>
+    {% endif %}
+    <!-- <span id="span">{% if numMovies %}{{ numMovies }}{% endif %}</span> -->
+</body>
+</html>
